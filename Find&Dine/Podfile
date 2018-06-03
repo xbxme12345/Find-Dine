@@ -3,4 +3,6 @@ target 'Find&Dine' do
     pod 'GooglePlaces'
     pod 'GooglePlacePicker'
     pod 'GoogleMaps'
+    pod 'Firebase/Core'
+    pod 'Firebase/Database'
 end

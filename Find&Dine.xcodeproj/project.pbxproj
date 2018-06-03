@@ -13,6 +13,7 @@
 		D4DDEA8420C3A241007C8F0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4DDEA8320C3A241007C8F0F /* Assets.xcassets */; };
 		D4DDEA8720C3A241007C8F0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4DDEA8520C3A241007C8F0F /* LaunchScreen.storyboard */; };
 		D4DDEA8F20C3A250007C8F0F /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = D4DDEA8E20C3A250007C8F0F /* Podfile */; };
+		D4DDEA9120C3AA52007C8F0F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4DDEA9020C3AA52007C8F0F /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		D4DDEA8620C3A241007C8F0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4DDEA8820C3A241007C8F0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4DDEA8E20C3A250007C8F0F /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		D4DDEA9020C3AA52007C8F0F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				D4DDEA8020C3A241007C8F0F /* Main.storyboard */,
 				D4DDEA8320C3A241007C8F0F /* Assets.xcassets */,
 				D4DDEA8520C3A241007C8F0F /* LaunchScreen.storyboard */,
+				D4DDEA9020C3AA52007C8F0F /* GoogleService-Info.plist */,
 				D4DDEA8820C3A241007C8F0F /* Info.plist */,
 				D4DDEA8E20C3A250007C8F0F /* Podfile */,
 			);
@@ -129,6 +132,7 @@
 			files = (
 				D4DDEA8720C3A241007C8F0F /* LaunchScreen.storyboard in Resources */,
 				D4DDEA8420C3A241007C8F0F /* Assets.xcassets in Resources */,
+				D4DDEA9120C3AA52007C8F0F /* GoogleService-Info.plist in Resources */,
 				D4DDEA8F20C3A250007C8F0F /* Podfile in Resources */,
 				D4DDEA8220C3A241007C8F0F /* Main.storyboard in Resources */,
 			);
@@ -306,6 +310,7 @@
 				D4DDEA8D20C3A241007C8F0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
