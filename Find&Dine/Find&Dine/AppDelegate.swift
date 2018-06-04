@@ -2,26 +2,26 @@
 //  AppDelegate.swift
 //  Find&Dine
 //
-//  Created by Yan Wen Huang on 6/3/18.
-//  Copyright © 2018 Wentworth Senior Project. All rights reserved.
+//  Created by Gregory Lee on 6/4/18.
+//  Copyright © 2018 WIT Senior Design. All rights reserved.
 //
 
 import UIKit
-import GooglePlaces
 import Firebase
+import GooglePlaces
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        //Google Places SDK
+        // Google Places SDK
         GMSPlacesClient.provideAPIKey("AIzaSyDdLhpdN6aFFKsPfQ9SdnP8P1UIqxNhAjQ")
         GMSServices.provideAPIKey("AIzaSyDdLhpdN6aFFKsPfQ9SdnP8P1UIqxNhAjQ")
-        //Firebase Realtime Database
+        // Firebase Realtime Database
         FirebaseApp.configure()
         return true
     }

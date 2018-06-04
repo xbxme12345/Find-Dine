@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  Find&Dine
 //
-//  Created by Yan Wen Huang on 6/3/18.
-//  Copyright © 2018 Wentworth Senior Project. All rights reserved.
+//  Created by Gregory Lee on 6/4/18.
+//  Copyright © 2018 WIT Senior Design. All rights reserved.
 //
 
 import UIKit
