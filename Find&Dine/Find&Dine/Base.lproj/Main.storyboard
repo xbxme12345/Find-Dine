@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="abe-Hn-TjT">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Find & Dine-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Find_Dine" customModuleProvider="target" sceneMemberID="viewController">
@@ -60,22 +60,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L5e-hr-tXj">
-                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <rect key="contentStretch" x="0.0" y="0.0" width="0.5" height="0.5"/>
-                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <items>
-                                    <navigationItem title="Find &amp; Dine" id="IRP-NJ-bLC">
-                                        <barButtonItem key="rightBarButtonItem" title="Generate" id="8Zr-Qg-Ph7">
-                                            <connections>
-                                                <action selector="generate:" destination="BYZ-38-t0r" id="U1Q-Ae-NK6"/>
-                                                <segue destination="k39-cC-Uuh" kind="showDetail" identifier="toResults" id="LcX-J1-8oq"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Minimum Rating:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQT-KV-4ju">
                                 <rect key="frame" x="18" y="344" width="128" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -133,7 +117,7 @@
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4rH-h7-baG">
-                                <rect key="frame" x="180" y="559" width="16" height="21"/>
+                                <rect key="frame" x="180" y="557" width="16" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -159,22 +143,30 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="????" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNI-rD-0n2">
-                                <rect key="frame" x="167" y="689" width="34" height="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NhR-GK-Y8r">
+                                <rect key="frame" x="214" y="104" width="146" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Use Current Location"/>
+                                <connections>
+                                    <action selector="getCurrentPlace:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J0X-xS-mbW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Find &amp; Dine" id="PO0-6W-Jya">
+                        <barButtonItem key="rightBarButtonItem" title="Generate" id="921-fi-kPX">
+                            <connections>
+                                <segue destination="k39-cC-Uuh" kind="show" identifier="toResults" id="N2M-bT-eRc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="locationInput" destination="L69-Ww-pd1" id="57Z-Ia-2A7"/>
                         <outlet property="maxPriceInput" destination="5la-Q3-7CM" id="AXS-r4-a5U"/>
                         <outlet property="minPriceInput" destination="DuS-QS-w5T" id="XJl-nF-TnZ"/>
-                        <outlet property="num" destination="ZNI-rD-0n2" id="s54-QB-PV0"/>
                         <outlet property="ratingInput" destination="Fp2-ft-PzX" id="eDa-bm-IKs"/>
                         <outlet property="ratingOutput" destination="Hix-ZJ-WCb" id="u4c-Pz-Osy"/>
                         <outlet property="reviewServiceInput" destination="7tM-bG-1xH" id="XO0-zL-yh2"/>
@@ -185,37 +177,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="rt4-xJ-xSW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="224.80000000000001" y="33.990147783251231"/>
+            <point key="canvasLocation" x="2109.5999999999999" y="33.990147783251231"/>
         </scene>
-        <!--Results View Controller-->
+        <!--Results-->
         <scene sceneID="HGt-QY-2nc">
             <objects>
-                <viewController id="k39-cC-Uuh" customClass="resultsViewController" customModule="Find_Dine" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Results" id="k39-cC-Uuh" customClass="resultsViewController" customModule="Find_Dine" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GHg-hd-jQw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MZI-68-vEW">
-                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <rect key="contentStretch" x="0.0" y="0.0" width="0.5" height="0.5"/>
-                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <items>
-                                    <navigationItem title="Find &amp; Dine" id="qCd-4T-fJX">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="WO6-w9-CT7">
-                                            <connections>
-                                                <action selector="back:" destination="k39-cC-Uuh" id="a8Q-nD-cbE"/>
-                                                <segue destination="BYZ-38-t0r" kind="show" identifier="back" id="6kr-EW-irb"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Generate" id="DrQ-CV-cZS">
-                                            <connections>
-                                                <segue destination="k39-cC-Uuh" kind="show" id="KH8-8y-k2m"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMV-nV-qYS">
                                 <rect key="frame" x="97" y="164" width="181" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -265,6 +236,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WZQ-YG-Jss" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="UTH-bx-gqx"/>
@@ -272,6 +248,7 @@
                     <connections>
                         <outlet property="keywordOutput" destination="QSb-Di-mIv" id="ni4-EW-ITx"/>
                         <outlet property="locationOutput" destination="cMV-nV-qYS" id="8th-vw-4vs"/>
+                        <outlet property="mapView" destination="WZQ-YG-Jss" id="bO6-wU-yLW"/>
                         <outlet property="maxPriceOutput" destination="i3p-qZ-A0W" id="FvS-Ox-PxP"/>
                         <outlet property="minPriceOutput" destination="tWq-V3-5Xe" id="xds-Nj-uzc"/>
                         <outlet property="minRatingOutput" destination="V39-Km-IHZ" id="C1m-jV-1fp"/>
@@ -281,7 +258,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K10-XA-RMf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="996" y="34"/>
+            <point key="canvasLocation" x="2880.8000000000002" y="33.990147783251231"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3Hf-5P-bpE">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="abe-Hn-TjT" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="V6x-sn-ZaJ">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="mpL-t9-aAZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z16-tU-Gxc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1318" y="34"/>
         </scene>
     </scenes>
 </document>

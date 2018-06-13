@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import GooglePlacePicker
+import GoogleMaps
 
 class resultsViewController: UIViewController {
     
@@ -18,6 +20,10 @@ class resultsViewController: UIViewController {
     @IBOutlet weak var serviceOutput: UILabel!
     @IBOutlet weak var minPriceOutput: UILabel!
     @IBOutlet weak var maxPriceOutput: UILabel!
+    //@IBOutlet weak var latitude: UILabel!
+    //@IBOutlet weak var longitude: UILabel!
+    
+    private let locationManager = CLLocationManager()
     
     //local variables for displaying data from 1st VC 
     var location = String()
@@ -27,7 +33,10 @@ class resultsViewController: UIViewController {
     var service = String()
     var minPrice = String()
     var maxPrice = String()
+    var currentlatitude = CLLocationDegrees()
+    var currentlongitude = CLLocationDegrees()
     
+    @IBOutlet weak var mapView: GMSMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +49,16 @@ class resultsViewController: UIViewController {
         minPriceOutput.text = minPrice
         maxPriceOutput.text = maxPrice
         
+        //currentlatitude = (locationManager.location?.coordinate.latitude)!
+        //currentlongitude = (locationManager.location?.coordinate.longitude)!
+        
+        //latitude.text = String(currentlatitude)
+        //longitude.text = String(currentlongitude)
+        
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        
+        circle() 
         // Do any additional setup after loading the view.
     }
     
@@ -48,19 +67,36 @@ class resultsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func Back(_ sender: Any) {
-        performSegue(withIdentifier: "back", sender: self)
+    func circle()
+    {
+        let circleCenter = CLLocationCoordinate2D(latitude: 42.3366871, longitude: -71.0979504)
+        let circ = GMSCircle(position: circleCenter, radius: 800)
+        circ.map = mapView
     }
-    
-    //trying to send data back to first screeen to "remember" values entered
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        let firstVC = segue.destination as! ViewController
-        firstVC.location = location
-        firstVC.travelDistance = travelDistance
-        firstVC.keywords = keyword
-    }
-    
 
+}
+// MARK: - CLLocationManagerDelegate
+//1
+extension resultsViewController: CLLocationManagerDelegate {
+
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+
+        guard status == .authorizedWhenInUse else {
+            return
+        }
+
+        locationManager.startUpdatingLocation()
+    
+        mapView.isMyLocationEnabled = true
+        mapView.settings.myLocationButton = true
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.first else {
+            return
+        }
+        
+        mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+        locationManager.stopUpdatingLocation()
+    }
 }
