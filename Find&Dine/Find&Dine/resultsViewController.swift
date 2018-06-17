@@ -49,7 +49,7 @@ class resultsViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         
         //draw circle with radius of Travel distance 
-        circle()
+        //circle()
         
         getPlaceInfo()
     }
