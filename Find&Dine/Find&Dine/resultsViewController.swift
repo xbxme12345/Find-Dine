@@ -6,24 +6,30 @@
 //  Copyright © 2018 WIT Senior Design. All rights reserved.
 //
 
+/**
+ TODO:
+ get places within x radius of user and display on map
+ 
+ */
+ 
+
 import UIKit
 import GooglePlacePicker
 import GoogleMaps
 
 class resultsViewController: UIViewController {
     
-    // connections to labels in this VC
-    @IBOutlet weak var locationOutput: UILabel!
-    @IBOutlet weak var travelDistanceOutput: UILabel!
-    @IBOutlet weak var keywordOutput: UILabel!
-    @IBOutlet weak var minRatingOutput: UILabel!
-    @IBOutlet weak var serviceOutput: UILabel!
-    @IBOutlet weak var minPriceOutput: UILabel!
-    @IBOutlet weak var maxPriceOutput: UILabel!
-    //@IBOutlet weak var latitude: UILabel!
-    //@IBOutlet weak var longitude: UILabel!
-    
     private let locationManager = CLLocationManager()
+    
+    //init map view
+    @IBOutlet weak var mapView: GMSMapView!
+    
+    //init display
+    @IBOutlet weak var restaurantName: UILabel!
+    @IBOutlet weak var placeAddr: UILabel!
+    @IBOutlet weak var placeRating: UILabel!
+    @IBOutlet weak var placePrice: UILabel!
+    
     
     //local variables for displaying data from 1st VC 
     var location = String()
@@ -36,51 +42,74 @@ class resultsViewController: UIViewController {
     var currentlatitude = CLLocationDegrees()
     var currentlongitude = CLLocationDegrees()
     
-    @IBOutlet weak var mapView: GMSMapView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //set text 
-        locationOutput.text = location
-        travelDistanceOutput.text = travelDistance
-        keywordOutput.text = keyword
-        minRatingOutput.text = String(minRating) 
-        serviceOutput.text = service
-        minPriceOutput.text = minPrice
-        maxPriceOutput.text = maxPrice
-        
-        //currentlatitude = (locationManager.location?.coordinate.latitude)!
-        //currentlongitude = (locationManager.location?.coordinate.longitude)!
-        
-        //latitude.text = String(currentlatitude)
-        //longitude.text = String(currentlongitude)
-        
+
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         
-        circle() 
-        // Do any additional setup after loading the view.
+        //draw circle with radius of Travel distance 
+        circle()
+        
+        getPlaceInfo()
+    }
+    
+    func circle() {
+        currentlatitude = (locationManager.location?.coordinate.latitude)!
+        currentlongitude = (locationManager.location?.coordinate.longitude)!
+        
+        let circleCenter = CLLocationCoordinate2D(latitude: currentlatitude, longitude: currentlongitude)
+        
+        let circ = GMSCircle(position: circleCenter, radius: getDistance())
+        circ.map = mapView
+    }
+    
+    //convert distance in miles to meters
+    func getDistance() -> Double {
+        let distance = Double(travelDistance)
+        let distanceInMeters = distance! * 1609.344
+        //distanceOutput.text = String(distanceInMeters)
+        return distanceInMeters
+    }
+    
+    func getPlaceInfo() {
+        // El Pelon
+        let placeID = "ChIJ1SGgo_V544kRmGe2qAAC1x0"
+        
+        let placesClient = GMSPlacesClient()
+        
+        placesClient.lookUpPlaceID(placeID, callback: { (place, error) -> Void in
+            if let error = error {
+                print("lookup place id query error: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let place = place else {
+                print("No place details for \(placeID)")
+                return
+            }
+            
+            self.restaurantName.text = place.name
+            self.placeAddr.text = place.formattedAddress
+            self.placeRating.text = String(place.rating)
+            //self.placePrice.text = String(place.priceLevel)
+            
+            
+        })
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    func circle()
-    {
-        let circleCenter = CLLocationCoordinate2D(latitude: 42.3366871, longitude: -71.0979504)
-        let circ = GMSCircle(position: circleCenter, radius: 800)
-        circ.map = mapView
-    }
 
 }
-// MARK: - CLLocationManagerDelegate
-//1
+
 extension resultsViewController: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-
         guard status == .authorizedWhenInUse else {
             return
         }
@@ -100,3 +129,27 @@ extension resultsViewController: CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
     }
 }
+
+
+/**
+ // connections to labels in this VC
+ @IBOutlet weak var locationOutput: UILabel!
+ @IBOutlet weak var travelDistanceOutput: UILabel!
+ @IBOutlet weak var keywordOutput: UILabel!
+ @IBOutlet weak var minRatingOutput: UILabel!
+ @IBOutlet weak var serviceOutput: UILabel!
+ @IBOutlet weak var minPriceOutput: UILabel!
+ @IBOutlet weak var maxPriceOutput: UILabel!
+ 
+ 
+ //set text
+ locationOutput.text = location
+ travelDistanceOutput.text = travelDistance
+ keywordOutput.text = keyword
+ minRatingOutput.text = String(minRating)
+ serviceOutput.text = service
+ minPriceOutput.text = minPrice
+ maxPriceOutput.text = maxPrice
+ 
+ /**/
+ */
