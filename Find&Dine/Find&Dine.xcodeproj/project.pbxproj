@@ -15,6 +15,10 @@
 		49B2A21120C5B1E6009E15A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49B2A21020C5B1E6009E15A7 /* Assets.xcassets */; };
 		49B2A21420C5B1E6009E15A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49B2A21220C5B1E6009E15A7 /* LaunchScreen.storyboard */; };
 		6293124D2A0F9996D3EBCF98 /* libPods-Find&Dine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9CC7F00F1AC002E3AB346E /* libPods-Find&Dine.a */; };
+		D4823E1420D7476300B4167A /* CDYelpFusionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4823E1320D7476300B4167A /* CDYelpFusionKit.swift */; };
+		D4823E1620D7478A00B4167A /* ftInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4823E1520D7478A00B4167A /* ftInfoViewController.swift */; };
+		D4823E1820D747A100B4167A /* ftResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4823E1720D747A100B4167A /* ftResultViewController.swift */; };
+		D4823E1A20D747B200B4167A /* ftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4823E1920D747B200B4167A /* ftViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +34,10 @@
 		49B2A21520C5B1E6009E15A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C016A4F479C6A1019D33FB6C /* Pods-Find&Dine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Find&Dine.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Find&Dine/Pods-Find&Dine.debug.xcconfig"; sourceTree = "<group>"; };
 		D2820B0BC95537EA77C7948B /* Pods-Find&Dine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Find&Dine.release.xcconfig"; path = "Pods/Target Support Files/Pods-Find&Dine/Pods-Find&Dine.release.xcconfig"; sourceTree = "<group>"; };
+		D4823E1320D7476300B4167A /* CDYelpFusionKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDYelpFusionKit.swift; sourceTree = "<group>"; };
+		D4823E1520D7478A00B4167A /* ftInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ftInfoViewController.swift; sourceTree = "<group>"; };
+		D4823E1720D747A100B4167A /* ftResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ftResultViewController.swift; sourceTree = "<group>"; };
+		D4823E1920D747B200B4167A /* ftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ftViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +81,10 @@
 				49B2A21220C5B1E6009E15A7 /* LaunchScreen.storyboard */,
 				493DFD8E20C5C365005C91EE /* GoogleService-Info.plist */,
 				49B2A21520C5B1E6009E15A7 /* Info.plist */,
+				D4823E1320D7476300B4167A /* CDYelpFusionKit.swift */,
+				D4823E1520D7478A00B4167A /* ftInfoViewController.swift */,
+				D4823E1720D747A100B4167A /* ftResultViewController.swift */,
+				D4823E1920D747B200B4167A /* ftViewController.swift */,
 			);
 			path = "Find&Dine";
 			sourceTree = "<group>";
@@ -172,12 +184,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Find&Dine/Pods-Find&Dine-resources.sh",
+				"${PODS_ROOT}/CDYelpFusionKit/Resources/Images.xcassets",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 				"${PODS_ROOT}/GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle",
 				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Assets.car",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlacePicker.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
@@ -213,8 +227,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				49B2A20C20C5B1E5009E15A7 /* ViewController.swift in Sources */,
+				D4823E1A20D747B200B4167A /* ftViewController.swift in Sources */,
+				D4823E1420D7476300B4167A /* CDYelpFusionKit.swift in Sources */,
+				D4823E1620D7478A00B4167A /* ftInfoViewController.swift in Sources */,
 				49B2A20A20C5B1E5009E15A7 /* AppDelegate.swift in Sources */,
 				4919230420C85810004C5B68 /* resultsViewController.swift in Sources */,
+				D4823E1820D747A100B4167A /* ftResultViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

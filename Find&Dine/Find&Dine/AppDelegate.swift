@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey("AIzaSyDdLhpdN6aFFKsPfQ9SdnP8P1UIqxNhAjQ")
         // Firebase Realtime Database
         FirebaseApp.configure()
+        // CD Yelp Fusion Kit API
+        CDYelpFusionKitManager.shared.configure()
         return true
     }
 
