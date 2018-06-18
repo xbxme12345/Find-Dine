@@ -67,12 +67,12 @@
 			children = (
 				49B2A20920C5B1E5009E15A7 /* AppDelegate.swift */,
 				49B2A20B20C5B1E5009E15A7 /* ViewController.swift */,
+				4919230320C85810004C5B68 /* resultsViewController.swift */,
 				49B2A20D20C5B1E5009E15A7 /* Main.storyboard */,
 				49B2A21020C5B1E6009E15A7 /* Assets.xcassets */,
 				49B2A21220C5B1E6009E15A7 /* LaunchScreen.storyboard */,
 				493DFD8E20C5C365005C91EE /* GoogleService-Info.plist */,
 				49B2A21520C5B1E6009E15A7 /* Info.plist */,
-				4919230320C85810004C5B68 /* resultsViewController.swift */,
 			);
 			path = "Find&Dine";
 			sourceTree = "<group>";
