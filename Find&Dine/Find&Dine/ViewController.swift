@@ -86,13 +86,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     //assigning variables to variables in resultsVC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let resultsViewController = segue.destination as! resultsViewController
-        resultsViewController.location = locationInput.text!
         resultsViewController.travelDistance = travelDistanceInput.text!
         resultsViewController.keyword = searchKeywordsInput.text!
-        resultsViewController.minRating = rating
         resultsViewController.service = service
-        resultsViewController.minPrice = minPrice
-        resultsViewController.maxPrice = maxPrice
         //resultsViewController.coordinates = coordinates
         
     }

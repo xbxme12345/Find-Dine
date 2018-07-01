@@ -8,7 +8,13 @@
 
 /**
  TODO:
- get places within x radius of user and display on map
+ retrieve coordinates for El Pelon so marker can be dropped automatically,
+ - test with 1-2 other restaurants
+ retrieve placeID from restaurants in area
+ 
+ be able to calculate distance away from user?
+ 
+ find out how much we need to +/- from a current location to end of search radius
  
  */
  
@@ -16,6 +22,7 @@
 import UIKit
 import GooglePlacePicker
 import GoogleMaps
+import Foundation
 
 class resultsViewController: UIViewController {
     
@@ -29,16 +36,14 @@ class resultsViewController: UIViewController {
     @IBOutlet weak var placeAddr: UILabel!
     @IBOutlet weak var placeRating: UILabel!
     @IBOutlet weak var placePrice: UILabel!
+    @IBOutlet weak var restaurantImage: UIImageView!
     
     
     //local variables for displaying data from 1st VC 
-    var location = String()
+    //var location = String()
     var travelDistance = String()
     var keyword = String()
-    var minRating = Int()
     var service = String()
-    var minPrice = String()
-    var maxPrice = String()
     var currentlatitude = CLLocationDegrees()
     var currentlongitude = CLLocationDegrees()
     
@@ -48,20 +53,20 @@ class resultsViewController: UIViewController {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         
-        //draw circle with radius of Travel distance 
-        //circle()
+        //get restaurant info from Google 
+        //create instance of Geocoding and make it retrieve all info?
         
+        print("Before geocoding request")
+        let p1 = Geocoding()
+        
+        p1.geocodeRequest()
+
+        //output found location info *currently hardcoded
         getPlaceInfo()
-    }
+        
+        
     
-    func circle() {
-        currentlatitude = (locationManager.location?.coordinate.latitude)!
-        currentlongitude = (locationManager.location?.coordinate.longitude)!
-        
-        let circleCenter = CLLocationCoordinate2D(latitude: currentlatitude, longitude: currentlongitude)
-        
-        let circ = GMSCircle(position: circleCenter, radius: getDistance())
-        circ.map = mapView
+    
     }
     
     //convert distance in miles to meters
@@ -75,7 +80,6 @@ class resultsViewController: UIViewController {
     func getPlaceInfo() {
         // El Pelon
         let placeID = "ChIJ1SGgo_V544kRmGe2qAAC1x0"
-        
         let placesClient = GMSPlacesClient()
         
         placesClient.lookUpPlaceID(placeID, callback: { (place, error) -> Void in
@@ -92,12 +96,53 @@ class resultsViewController: UIViewController {
             self.restaurantName.text = place.name
             self.placeAddr.text = place.formattedAddress
             self.placeRating.text = String(place.rating)
-            //self.placePrice.text = String(place.priceLevel)
-            
+            self.placePrice.text = self.text(for: place.priceLevel)
+            self.loadFirstPhotoForPlace(placeID: place.placeID)
             
         })
         
+        let position = CLLocationCoordinate2D(latitude: 42.3418371, longitude: -71.0976021)
+        let marker = GMSMarker(position: position)
+        marker.title = restaurantName.text
+        marker.map = mapView
         
+        
+    }
+        
+    // Return the appropriate text string for the specified |GMSPlacesPriceLevel|.
+    func text(for priceLevel: GMSPlacesPriceLevel) -> String {
+        switch priceLevel {
+            case .free: return NSLocalizedString("Free", comment: "Free")
+            case .cheap: return NSLocalizedString("$", comment: "$")
+            case .medium: return NSLocalizedString("$$", comment: "$$")
+            case .high: return NSLocalizedString("$$$", comment: "$$$")
+            case .expensive: return NSLocalizedString("$$$$", comment: "$$$$")
+            case .unknown: return NSLocalizedString("Unknown", comment: "Unknown")
+            }
+    }
+        
+    func loadFirstPhotoForPlace(placeID: String) {
+        GMSPlacesClient.shared().lookUpPhotos(forPlaceID: placeID) { (photos, error) -> Void in
+            if let error = error {
+                // TODO: handle the error.
+                print("Error: \(error.localizedDescription)")
+            } else {
+                if let firstPhoto = photos?.results.first {
+                    self.loadImageForMetadata(photoMetadata: firstPhoto)
+                }
+            }
+        }
+    }
+        
+    private func loadImageForMetadata(photoMetadata: GMSPlacePhotoMetadata) {
+        GMSPlacesClient.shared().loadPlacePhoto(photoMetadata, callback: { (photo, error) -> Void in
+            if let error = error {
+                // TODO: handle the error.
+                print("Error: \(error.localizedDescription)")
+            } else {
+                self.restaurantImage.image = photo;
+            }
+        })
     }
     
     override func didReceiveMemoryWarning() {
@@ -132,24 +177,13 @@ extension resultsViewController: CLLocationManagerDelegate {
 
 
 /**
- // connections to labels in this VC
- @IBOutlet weak var locationOutput: UILabel!
- @IBOutlet weak var travelDistanceOutput: UILabel!
- @IBOutlet weak var keywordOutput: UILabel!
- @IBOutlet weak var minRatingOutput: UILabel!
- @IBOutlet weak var serviceOutput: UILabel!
- @IBOutlet weak var minPriceOutput: UILabel!
- @IBOutlet weak var maxPriceOutput: UILabel!
+ func circle() {
+ currentlatitude = (locationManager.location?.coordinate.latitude)!
+ currentlongitude = (locationManager.location?.coordinate.longitude)!
  
+ let circleCenter = CLLocationCoordinate2D(latitude: currentlatitude, longitude: currentlongitude)
  
- //set text
- locationOutput.text = location
- travelDistanceOutput.text = travelDistance
- keywordOutput.text = keyword
- minRatingOutput.text = String(minRating)
- serviceOutput.text = service
- minPriceOutput.text = minPrice
- maxPriceOutput.text = maxPrice
- 
- /**/
+ let circ = GMSCircle(position: circleCenter, radius: getDistance())
+ circ.map = mapView
+ }
  */
