@@ -10,131 +10,111 @@ import Foundation
 import GoogleMaps
 import GooglePlaces
 
-struct geocoding: Codable {
-    let debug_log = [String: String]()
-    let html_attributions = [String:String]()
-    let logging_info = [String: String]()
-    let results: [infoResult]?
-}
-
-//supplementary structs
-struct infoResult: Codable {
-    let geometry: loc?
-    let icon: String?
-    let id: String?
-    let name: String?
-    let opening_hours: hours?
-    let photos: [image]?
-    let place_id: String?
-    let reference: String?
-    let scope: String?
-    let types: [String]?
-    let vicinity: String?
-}
-struct lines: Codable {
-    let line: [String]?
-}
-struct log_info: Codable {
-    let experiment_id: [String]?
-    let query_geographic_location: String?
-}
-struct loc: Codable {
-    let location: [String: Double]?
-}
-struct location: Codable {
-    let lat: Double
-    let lng: Double
-}
-struct hours: Codable {
-    let open_now: Bool?
-    let weekday_text: [String]? 
-}
-struct image: Codable {
-    let height: Int?
-    let html_attributions: [String]?
-    let photo_reference: String?
-    let width: Int?
-}
+//struct geocoding: Codable {
+//    let html_attributions = [String:String]()
+//    let results: [infoResult]?
+//}
+//
+////supplementary structs
+//struct infoResult: Codable {
+//    let geometry: loc?
+//    let icon: String?
+//    let id: String?
+//    let name: String?
+//    let opening_hours: hours?
+//    let photos: [image]?
+//    let place_id: String?
+//    let price_level: Int?
+//    let rating: Double?
+//    let reference: String?
+//    let scope: String?
+//    let types: [String]?
+//    let vicinity: String?
+//}
+//struct lines: Codable {
+//    let line: [String]?
+//}
+//struct log_info: Codable {
+//    let experiment_id: [String]?
+//    let query_geographic_location: String?
+//}
+//struct loc: Codable {
+//    let location: [String: Double]?
+//}
+//struct location: Codable {
+//    let lat: Double
+//    let lng: Double
+//}
+//struct hours: Codable {
+//    let open_now: Bool?
+//    let weekday_text: [String]?
+//}
+//struct image: Codable {
+//    let height: Int?
+//    let html_attributions: [String]?
+//    let photo_reference: String?
+//    let width: Int?
+//}
+//
+//struct RestInfo {
+//    let lat: Double
+//    let lng: Double
+//    let pid: String
+//}
 
 class Geocoding {
     
     //get Geocode requests
+    // func geocodeRequest(lat: String, lng: String, radius: String, keyword: String) {
     func geocodeRequest() {
-        //new key: AIzaSyDtbc_paodfWo1KRW0fGQ1dB--g8RyG-Kg
-        // Needs to be enabled somehow IT WORK BOIS
-        //https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670,151.1957&radius=500&types=food&name=cruise&key=AIzaSyDtbc_paodfWo1KRW0fGQ1dB--g8RyG-Kg
         
-        //test strings
-        //let urlString = "https://leeg3.github.io/geocoding1.json"
-        //let urlString = "https://leeg3.github.io/geocoding2.json"
-        //no 3
-        //let urlString = "https://leeg3.github.io/geocoding4.json"
-        let urlString = "https://leeg3.github.io/geocoding5.json"
-        guard let url = URL(string: urlString) else { return }
+    var RestArr = [RestInfo]()
         
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            // if error != nil { print(error!.localizedDescription) }
-            guard let data = data else { return }
+    //new key: AIzaSyDtbc_paodfWo1KRW0fGQ1dB--g8RyG-Kg
+    // Needs to be enabled somehow IT WORK BOIS
+//        The following example is a search request for places of type 'restaurant' within a 1500m radius of a point in Sydney, Australia, containing the word 'cruise':
+//        https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670,151.1957&radius=500&types=food&name=cruise&key=AIzaSyDtbc_paodfWo1KRW0fGQ1dB--g8RyG-Kg
+        
+    /* Prob gonna have to have 2 different urlstrings for keyword/no keyword */
+    let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=42.3360247,-71.0949302&radius=400&type=restaurant&keyword=pizza&key=AIzaSyDtbc_paodfWo1KRW0fGQ1dB--g8RyG-Kg"
+        
+    guard let url = URL(string: urlString) else { return }
+        
+    URLSession.shared.dataTask(with: url) { (data, response, error) in
+    // if error != nil { print(error!.localizedDescription) }
+    guard let data = data else { return }
             
             
-            //Implement JSON decoding and parsing
-            do {
-                //Decode retrived data with JSONDecoder and assing type of Article object
-                //use [RestaurantInfo].self to get multiples of the same data, use with super query?
-                //let restaurantData = try JSONDecoder().decode(RestaurantInfo.self, from: data)
-    
-                let restaurantInfo = try JSONDecoder().decode(geocoding.self, from: data)
-                
-                print(restaurantInfo.debug_log)
-                print(restaurantInfo.logging_info)
-                
-                for elem in (restaurantInfo.results)! {
-                    print("*********************entry*********************")
-                    print(elem.geometry?.location!["lat"]! as! Double)
-                    print(elem.geometry?.location!["lng"]! as! Double)
-                    //image icon
-                    print(elem.icon!)
-                    print(elem.id!) // HOW TO ACCESS THE ELEMENTS IN THE ARRAYS
-                    //rest info
-                    print(elem.name!)
-                    print(elem.opening_hours!)
-                    print(elem.photos!)
-                    //place ID
-                    print(elem.place_id!)
-                    print(elem.reference!)
-                    print(elem.scope!)
-                    //i may need dis
-                    print(elem.types!)
-                    print(elem.vicinity!)
-                }
-                
-                
-                } catch let jsonError {
-                    print(jsonError)
-                }
-            }.resume()
+    //Implement JSON decoding and parsing
+    do {
+                //Decode retrived data with JSONDecoder and use geocoding for type
+        let restaurantInfo = try JSONDecoder().decode(geocoding.self, from: data)
         
-        print("*********************entry*********************")
-    }
-    
-    // Return the appropriate text string for the specified |GMSPlacesPriceLevel|.
-    func text(for priceLevel: GMSPlacesPriceLevel) -> String {
-        switch priceLevel {
-        case .free: return NSLocalizedString("Free", comment: "Free")
-        case .cheap: return NSLocalizedString("$", comment: "$")
-        case .medium: return NSLocalizedString("$$", comment: "$$")
-        case .high: return NSLocalizedString("$$$", comment: "$$$")
-        case .expensive: return NSLocalizedString("$$$$", comment: "$$$$")
-        case .unknown: return NSLocalizedString("Unknown", comment: "Unknown")
+        for elem in (restaurantInfo.results)! {
+            //print("*********************entry*********************")
+            //print(elem.geometry?.location!["lat"]! as! Double)
+            //print(elem.geometry?.location!["lng"]! as! Double)
+            //print(elem.place_id!)
+            RestArr.append(RestInfo(lat: elem.geometry?.location!["lat"]! as! Double, lng: elem.geometry?.location!["lng"]! as! Double, pid: elem.place_id!))
         }
+            
+    } catch let jsonError { print(jsonError) }
+        
+//        print("Before output")
+//        for elem in RestArr {
+//            print("****************************")
+//            print("lat: ", elem.lat)
+//            print("lng: ", elem.lng)
+//            print("pid: ", elem.pid)
+//        }
+        
+    }.resume()
+        
+        
     }
     
     func getRestaurants(minPriceLevel: String, maxPricelevel: String, radius: Float, minRating: Int, keyword: String) {
         
-        
-    }
-    
-    func geocodeParse() {
         
     }
     
