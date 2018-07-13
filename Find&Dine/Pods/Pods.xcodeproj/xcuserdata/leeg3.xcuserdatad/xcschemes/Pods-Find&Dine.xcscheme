@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A467C95A50A8C34F5CEC5D0374539AD3"
+               BlueprintIdentifier = "5B223BD40AE2FF8A3426B51D7DDA73FF"
                BlueprintName = "Pods-Find&amp;Dine"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "libPods-Find&amp;Dine.a">

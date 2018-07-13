@@ -20,7 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         // Google Places SDK
         GMSPlacesClient.provideAPIKey("AIzaSyDdLhpdN6aFFKsPfQ9SdnP8P1UIqxNhAjQ")
-        GMSServices.provideAPIKey("AIzaSyDdLhpdN6aFFKsPfQ9SdnP8P1UIqxNhAjQ")
+        //GMSServices.provideAPIKey("AIzaSyDdLhpdN6aFFKsPfQ9SdnP8P1UIqxNhAjQ")
+        GMSServices.provideAPIKey("AIzaSyDtbc_paodfWo1KRW0fGQ1dB--g8RyG-Kg")
+        
         // Firebase Realtime Database
         FirebaseApp.configure()
         // CD Yelp Fusion Kit API

@@ -7,4 +7,8 @@ target 'Find&Dine' do
     pod 'Firebase/Database'
     pod 'YelpAPI'
     pod 'CDYelpFusionKit', '1.5.0'
+    #HTTP networking library
+    pod 'Alamofire', '~> 4.5'
+    #Promise
+    pod 'PromiseKit', '~> 4.4'
 end
