@@ -14,8 +14,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     
     var placesClient: GMSPlacesClient!
-    //var coordinates: CLLocationCoordinate2D!
-    
     
     //Connections to input fields in this ViewController
     @IBOutlet weak var locationInput: UITextField!
@@ -26,7 +24,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var minPriceInput: UISegmentedControl!
     @IBOutlet weak var maxPriceInput: UISegmentedControl!
     @IBOutlet weak var ratingOutput: UILabel!
-    //@IBOutlet weak var num: UILabel!
     
     //local variables used for extracting values from non text fields
     var rating = Int()
@@ -140,10 +137,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     //self.locationInput.text = place.name
                     self.locationInput.text = place.formattedAddress?.components(separatedBy: ", ").joined(separator: "\n")
                     //self.coordinates = place.coordinate
-                }
+                 }
             }
         })
-    }
+    }    
     
 }
 
