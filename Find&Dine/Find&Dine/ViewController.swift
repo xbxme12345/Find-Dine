@@ -11,11 +11,13 @@ import GooglePlaces
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
+    // init location manager
     let locationManager = CLLocationManager()
     
+    // init GMSPlacesClient
     var placesClient: GMSPlacesClient!
     
-    //Connections to input fields in this ViewController
+    // Connections to input fields for ViewController
     @IBOutlet weak var locationInput: UITextField!
     @IBOutlet weak var travelDistanceInput: UITextField!
     @IBOutlet weak var searchKeywordsInput: UITextField!
@@ -25,97 +27,134 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var maxPriceInput: UISegmentedControl!
     @IBOutlet weak var ratingOutput: UILabel!
     
-    //local variables used for extracting values from non text fields
-    var rating = Int()
-    var service = String()
-    var minPrice = "$"
-    var maxPrice = "$$"
+    // variables used for storing values from non text fields
+    // each set to a default value
+    var currentLocationUse = 0
+    var rating = 3.0
+    var service = "Google"
+    var minPrice = 1
+    var maxPrice = 2
 
-    //get value of slider and set rating
+    /** get value of slider and set rating
+     Purpose: Retrieve value of the rating slider if it is moved.
+     
+     Parameter: UISlider: The position of the slider indicates its value
+     
+     */
     @IBAction func ratingChange(_ sender: UISlider) {
-        let currentValue = Int(ratingInput.value)
+        // set current value to the input from the UISlider
+        let currentValue = ratingInput.value
+        
+        // update label in ViewController to display current value
         ratingOutput.text = "\(currentValue)"
-        rating = currentValue
+        
+        // set the current value as the rating
+        rating = Double(currentValue)
     }
     
-    //determine service to use
+    /**determine service to use
+     Purpose: To determine which rating service to use (Google (default) or Yelp)
+     
+     Parameter: UISwitch: the switch's position determines which service is used
+     
+     */
     @IBAction func serviceChange(_ sender: UISwitch) {
+        // if the switch is in the on position, then use the Yelp service
         if reviewServiceInput.isOn {
             service = "Yelp"
         }
         else {
-            service = "Google"
+            service = "Google" 
         }
     }
     
-    //get minPrice
+    /**
+     Purpose: to get the minPrice set by the user
+     
+     Parameter: sender: This is a UISegmentedControl which contains 4 options in this implementation
+     
+     */
     @IBAction func minPriceChange(_ sender: UISegmentedControl) {
+        // Go into switch to determine which option was selected then set minPrice to the corresponding value
         switch minPriceInput.selectedSegmentIndex {
         case 0:
-            minPrice = "$"
+            minPrice = 1
         case 1:
-            minPrice = "$$"
+            minPrice = 2
         case 2:
-            minPrice = "$$$"
+            minPrice = 3
         case 3:
-            minPrice = "$$$$"
+            minPrice = 4
         default:
             break
         }
     }
     
-    //get maxPrice
+    /**
+     Purpose: to get the maxPrice set by the user
+     
+     Parameter: sender: This is a UISegmentedControl which contains 4 options in this implementation
+     
+     */
     @IBAction func maxPriceChange(_ sender: UISegmentedControl) {
+        // Go into switch to determine which option was selected then set maxPrice to the corresponding value
         switch maxPriceInput.selectedSegmentIndex {
         case 0:
-            maxPrice = "$"
+            maxPrice = 1
         case 1:
-            maxPrice = "$$"
+            maxPrice = 2
         case 2:
-            maxPrice = "$$$"
+            maxPrice = 3
         case 3:
-            maxPrice = "$$$$"
+            maxPrice = 4
         default:
             break
         }
     }
     
-    //assigning variables to variables in resultsVC
+    /**
+     Purpose: Prepare to send data from this ViewController to resultsViewController
+     
+     */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // init resultsViewController as the segue destination
         let resultsViewController = segue.destination as! resultsViewController
+        resultsViewController.locationFlag = currentLocationUse
+        resultsViewController.location = locationInput.text! 
         resultsViewController.travelDistance = travelDistanceInput.text!
         resultsViewController.keyword = searchKeywordsInput.text!
         resultsViewController.service = service
-        //resultsViewController.coordinates = coordinates
-        
+        resultsViewController.minPrice = minPrice
+        resultsViewController.maxPrice = maxPrice
+        resultsViewController.minRating = Float(rating) 
     }
     
-    /*// send data to results VC
-    @IBAction func generate(_ sender: Any) {
+    /**send data to results VC
+     Purpose: Send data to the specified variables in resultsViewController from above
+     
+     Parameter: sender: the UIBarButtonItem which navigates to the next ViewController
+     
+     TESTTEST
+     */
+    @IBAction func Find(_ sender: UIBarButtonItem) {
+        // make sure that location, distance and keyword are filled out before sending data
         if locationInput.text != "" && travelDistanceInput.text != "" && searchKeywordsInput.text != "" {
-            performSegue(withIdentifier: "toResults", sender: self)
+            performSegue(withIdentifier: "resultsViewController", sender: self)
         }
-    }*/
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         placesClient = GMSPlacesClient.shared()
         
+        // set location manager as delegate
         locationManager.delegate = self
-        if CLLocationManager.authorizationStatus() == .notDetermined
-        {
+        
+        // request for use of location
+        if CLLocationManager.authorizationStatus() == .notDetermined {
             locationManager.requestWhenInUseAuthorization()
         }
-        
-        /*num.text = String(numVal)
-        if numVal > 0 {
-            locationInput.text = location
-            travelDistanceInput.text = travelDistance
-            searchKeywordsInput.text = keywords
-        }
-        */
-        
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func didReceiveMemoryWarning() {
@@ -123,23 +162,31 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    /**
+     Purpose: Retrieve current location's address
+     
+     Parameter: sender: UIButton, when the button is pressed, execute this function
+     */
     @IBAction func getCurrentPlace(_ sender: UIButton) {
-        
+        // get the current place
         placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
+            // if there is an error then output the error
             if let error = error {
                 print("Pick Place error: \(error.localizedDescription)")
                 return
             }
             
+            // if there is info about this place then retrieve it and then set the location field to the formatted address of the current location
             if let placeLikelihoodList = placeLikelihoodList {
                 let place = placeLikelihoodList.likelihoods.first?.place
                 if let place = place {
-                    //self.locationInput.text = place.name
                     self.locationInput.text = place.formattedAddress?.components(separatedBy: ", ").joined(separator: "\n")
-                    //self.coordinates = place.coordinate
                  }
             }
         })
+        
+        // flag for use in resultsViewController
+        currentLocationUse = 1
     }    
     
 }

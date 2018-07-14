@@ -160,7 +160,7 @@
                     <navigationItem key="navigationItem" title="Find &amp; Dine" id="PO0-6W-Jya">
                         <barButtonItem key="rightBarButtonItem" title="Find" id="921-fi-kPX">
                             <connections>
-                                <action selector="goToNext:" destination="BYZ-38-t0r" id="76d-7R-GSQ"/>
+                                <action selector="Find:" destination="BYZ-38-t0r" id="zNT-Wc-p6Q"/>
                                 <segue destination="k39-cC-Uuh" kind="show" identifier="toResults" id="N2M-bT-eRc"/>
                             </connections>
                         </barButtonItem>
