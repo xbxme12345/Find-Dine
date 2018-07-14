@@ -15,6 +15,7 @@
 		49B2A20F20C5B1E5009E15A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49B2A20D20C5B1E5009E15A7 /* Main.storyboard */; };
 		49B2A21120C5B1E6009E15A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49B2A21020C5B1E6009E15A7 /* Assets.xcassets */; };
 		49B2A21420C5B1E6009E15A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49B2A21220C5B1E6009E15A7 /* LaunchScreen.storyboard */; };
+		49F40FF320F3D72700D03BF9 /* ParseJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F40FF220F3D72700D03BF9 /* ParseJSON.swift */; };
 		6293124D2A0F9996D3EBCF98 /* libPods-Find&Dine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9CC7F00F1AC002E3AB346E /* libPods-Find&Dine.a */; };
 		D4823E1420D7476300B4167A /* CDYelpFusionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4823E1320D7476300B4167A /* CDYelpFusionKit.swift */; };
 		D4823E1620D7478A00B4167A /* ftInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4823E1520D7478A00B4167A /* ftInfoViewController.swift */; };
@@ -34,6 +35,7 @@
 		49B2A21020C5B1E6009E15A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49B2A21320C5B1E6009E15A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49B2A21520C5B1E6009E15A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49F40FF220F3D72700D03BF9 /* ParseJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseJSON.swift; sourceTree = "<group>"; };
 		C016A4F479C6A1019D33FB6C /* Pods-Find&Dine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Find&Dine.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Find&Dine/Pods-Find&Dine.debug.xcconfig"; sourceTree = "<group>"; };
 		D2820B0BC95537EA77C7948B /* Pods-Find&Dine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Find&Dine.release.xcconfig"; path = "Pods/Target Support Files/Pods-Find&Dine/Pods-Find&Dine.release.xcconfig"; sourceTree = "<group>"; };
 		D4823E1320D7476300B4167A /* CDYelpFusionKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDYelpFusionKit.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				49B2A20B20C5B1E5009E15A7 /* ViewController.swift */,
 				4919230320C85810004C5B68 /* resultsViewController.swift */,
 				4937CB3E20DC7A750061239F /* Geocoding.swift */,
+				49F40FF220F3D72700D03BF9 /* ParseJSON.swift */,
 				49B2A20D20C5B1E5009E15A7 /* Main.storyboard */,
 				49B2A21020C5B1E6009E15A7 /* Assets.xcassets */,
 				49B2A21220C5B1E6009E15A7 /* LaunchScreen.storyboard */,
@@ -231,6 +234,7 @@
 			files = (
 				49B2A20C20C5B1E5009E15A7 /* ViewController.swift in Sources */,
 				4937CB3F20DC7A750061239F /* Geocoding.swift in Sources */,
+				49F40FF320F3D72700D03BF9 /* ParseJSON.swift in Sources */,
 				D4823E1A20D747B200B4167A /* ftViewController.swift in Sources */,
 				D4823E1420D7476300B4167A /* CDYelpFusionKit.swift in Sources */,
 				D4823E1620D7478A00B4167A /* ftInfoViewController.swift in Sources */,
