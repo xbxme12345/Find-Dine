@@ -56,6 +56,12 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (4.5.2):
     - PromiseKit/CorePromise
+  - Realm (3.7.2):
+    - Realm/Headers (= 3.7.2)
+  - Realm/Headers (3.7.2)
+  - RealmSwift (3.7.2):
+    - Realm (= 3.7.2)
+  - TCPickerView (0.2.5)
   - YelpAPI (3.0.0)
 
 DEPENDENCIES:
@@ -67,6 +73,8 @@ DEPENDENCIES:
   - GooglePlacePicker
   - GooglePlaces
   - PromiseKit (~> 4.4)
+  - RealmSwift
+  - TCPickerView
   - YelpAPI
 
 SPEC REPOS:
@@ -87,6 +95,9 @@ SPEC REPOS:
     - nanopb
     - ObjectMapper
     - PromiseKit
+    - Realm
+    - RealmSwift
+    - TCPickerView
     - YelpAPI
 
 SPEC CHECKSUMS:
@@ -106,8 +117,11 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   ObjectMapper: 5cccd2de6f253eda859df8116a5a554d9769e859
   PromiseKit: 743e497a5f505a470d3bbbf4ce0663c1268af0a4
+  Realm: dd18c3014e8d90df300b83c6da740067436089c5
+  RealmSwift: 79917cae59a0c43ef8118b233a5978891dd50b4a
+  TCPickerView: 6f9e7a32c101f7a987f662c79993520e2ef86fa2
   YelpAPI: 9ae0ee45b998d306c1aff9b2d966dc23121f191e
 
-PODFILE CHECKSUM: 51169c8a72e78be4700210df7d1fd867b83f6b4e
+PODFILE CHECKSUM: 8d4ba71f51bc1a82abb8d9bbedad194dff7e2cbe
 
 COCOAPODS: 1.5.3

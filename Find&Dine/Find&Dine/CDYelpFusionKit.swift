@@ -6,8 +6,8 @@
 //  Copyright © 2018 WIT Senior Design. All rights reserved.
 //
 
-import UIKit
 import CDYelpFusionKit
+import UIKit
 
 final class CDYelpFusionKitManager: NSObject {
     static let shared = CDYelpFusionKitManager()

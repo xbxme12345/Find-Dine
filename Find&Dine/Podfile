@@ -7,6 +7,10 @@ target 'Find&Dine' do
     pod 'Firebase/Database'
     pod 'YelpAPI'
     pod 'CDYelpFusionKit', '1.5.0'
+    use_frameworks!
+    pod 'RealmSwift'
+    use_frameworks!
+    pod 'TCPickerView'
     #HTTP networking library
     pod 'Alamofire', '~> 4.5'
     #Promise
